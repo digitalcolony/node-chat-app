@@ -1,11 +1,3 @@
-[
-  {
-    id: "/#12345",
-    name: "Pepper",
-    room: "Taco Fans"
-  }
-];
-
 // addUser (id, name, room)
 // removeUser (id)
 // getUser (id)

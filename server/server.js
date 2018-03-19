@@ -24,6 +24,14 @@ io.on("connection", socket => {
     }
     socket.join(params.room);
     users.removeUser(socket.id);
+
+    // Confirm name is unique before allowing to join
+    var namesList = users.getUserList(params.room);
+    var namesMatch = namesList.findIndex(name => name == params.name);
+    if (namesMatch != -1) {
+      return callback("That name is currently in use. Pick something else.");
+    }
+
     users.addUser(socket.id, params.name, params.room);
 
     io.to(params.room).emit("updateUserList", users.getUserList(params.room));
